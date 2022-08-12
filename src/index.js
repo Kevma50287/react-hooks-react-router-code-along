@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+//Import BrowserRouter and Route functions
+import { BrowserRouter, Route } from "react-router-dom";
+
 function Home() {
   return (
     <div>
@@ -9,8 +12,51 @@ function Home() {
   );
 }
 
-function App() {
-  return <Home />;
+function About() {
+  return (
+    <div>
+      <h1>This is my about component!</h1>
+    </div>
+  )
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+function Login() {
+  return (
+    <div>
+      <h1>Login</h1>
+      <form>
+        <div>
+          <input type="text" name="username" placeholder="Username" />
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="Password" />
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  );
+}
+
+//Use Route to define client-side routes - Components wrapped in route will show on client-side
+function App() {
+  return (
+    <div>
+      <Route path="/">
+        <Home />
+      </Route>
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route path="/login">
+        <Login />
+      </Route>
+    </div>
+  );
+}
+
+// BrowserRouter component to wrap entire application and provide React Router context features
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root"));
